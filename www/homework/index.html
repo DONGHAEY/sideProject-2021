@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .login {
+        display: flex;
+        flex-direction: column;
+      }
+      .search {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: row;
+      }
+      .submit {
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="login">ID<input type="id" /> PW<input type="pass" /></div>
+      <div class="submit">
+        <button>로그인</button>
+      </div>
+      <div class="search">
+        <button>회원가입</button>
+        <button>찾기</button>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        justify-content: center;
+        align-items: center;
+        background: black;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        padding: 0;
+        margin: 0;
+      }
+      .ppl {
+        margin-top: 100px;
+        color: white;
+      }
+
+      .chart {
+        background: rgba(255, 255, 255, 0.1);
+        justify-content: flex-start;
+        border-radius: 100px;
+        align-items: center;
+        position: relative;
+        padding: 0 5px;
+        display: flex;
+        height: 15px;
+        width: 1200px;
+      }
+      .chart span {
+        /* You can modify the value below to change the distance between the percentage number and the bar */
+        margin-left: 10px;
+        color: #fff;
+        font-weight: bolder;
+      }
+      .front {
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+      }
+
+      .front img {
+        width: 900px;
+      }
+
+      .text {
+        color: white;
+        margin-left: 70px;
+      }
+
+      .text h2 {
+        font-size: 80px;
+        color: white;
+      }
+
+      .text p {
+        margin-top: -50px;
+      }
+      .ppl p {
+        margin-left: 5px;
+      }
+      .bar {
+        /* You can modify the total time used for the animation here */
+        animation: load 3s normal forwards;
+        /* 
+  Add a little spice by having a shadow below the bar.
+  Feel free to comment out this line below to have an even LITE version :D 
+  */
+        box-shadow: 0 10px 40px -10px #fff;
+
+        border-radius: 100px;
+        background: #fff;
+        height: 15px;
+        width: 0;
+      }
+
+      @keyframes load {
+        0% {
+          width: 0;
+        }
+        100% {
+          /* You need to change the percentage below to match the value in the corresponding <span> */
+          width: 63%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="front">
+      <div><img src="aaa.png" /></div>
+      <div class="text">
+        <h2>JEJUS</h2>
+        <p>praise the Lord sing to the LORD</p>
+      </div>
+    </div>
+    <div class="ppl">
+      <h1>2021-playlist</h1>
+      <div class="chart">
+        <div class="bar"></div>
+      </div>
+      <p class="clock"></p>
+    </div>
+    <script src="clock.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>

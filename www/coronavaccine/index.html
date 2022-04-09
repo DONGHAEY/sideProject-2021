@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<meta name="google-site-verification" content="7lyBe-b8yKVElXM9IL6hRGtnBee0VNPlgWsJ_3tTtss" />
+    <meta charset="utf-8" />
+    <title>코로나 백신 위치</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+      }
+      h1 {
+        font-size: 50px;
+        text-align: center;
+      }
+      .plan {
+        margin-top: 20px;
+        font-size: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>코로나 예방접종 위치</h1>
+    <p class="plain">이곳에서 어디서 예방접종을 할 수 있는지 찾으세요</p>
+    <script
+      type="text/javascript"
+      src="http://code.jquery.com/jquery-3.5.1.min.js"
+    ></script>
+    <div id="map" style="width: 750px; height: 350px"></div>
+    <label class="plan">위치 몇개 확인하기</label>
+    <p class="explain"></p>
+    <input type="range" min="1" class="input" max="300" />
+    <input type="button" class="submit" value="입력" />
+    <script>
+      const input = document.querySelector(".input");
+      const button = document.querySelector(".submit");
+      const explain = document.querySelector(".explain");
+
+      var markers = [];
+
+      function ajax(callback) {
+        var ourRequest = new XMLHttpRequest();
+        var page = input.value;
+        ourRequest.open(
+          "GET",
+          "https://api.odcloud.kr/api/15077586/v1/centers?page=1&serviceKey=9FhgyEw%2BBWwF2TcObOl6PW6u3%2FyqOyJ3d7H8Ur%2FqhHVGDy668fgLWNWZZX7jntQMLYUqEQy%2B5hWxKm87zN4FaA%3D%3D" +
+            "&perPage=" +
+            `${page}`
+        ); //post if you want to send data
+        ourRequest.onload = function () {
+          // console.log(ourRequest.responseText);//test logging to console.
+          var ourData = JSON.parse(ourRequest.responseText);
+          let data = ourData.data;
+          console.log(data);
+          callback(data);
+        };
+        ourRequest.send();
+      }
+
+      function deleteMarker() {
+        for (var i = 0; i < markers.length; i++) {
+          markers[i].setMap(null);
+        }
+      }
+
+      button.addEventListener("click", () => {
+        deleteMarker();
+        ajax((data) => {
+          for (let i = 0; i < data.length; i++) {
+            var x = data[i].lat;
+            var y = data[i].lng;
+            var marker = new kakao.maps.Marker({
+              position: new kakao.maps.LatLng(x, y), // 마커의 좌표
+              map: map, // 마커를 표시할 지도 객체
+            });
+            markers.push(marker);
+            explain.innerText = `총 ${data.length}만큼 찾음`;
+          }
+        });
+      });
+    </script>
+    <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fc4e0868a73550e765f74ed9621c6165"></script>
+    <script>
+      var container = document.getElementById("map");
+      var options = {
+        center: new kakao.maps.LatLng(37.567817, 127.004501),
+        level: 13,
+      };
+      var map = new kakao.maps.Map(container, options);
+    </script>
+  </body>
+</html>
